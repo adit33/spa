@@ -16706,8 +16706,11 @@ module.exports = __webpack_require__(56);
 
 /***/ }),
 /* 16 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+throw new Error("Cannot find module \"Dist/Errors\"");
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -16721,6 +16724,8 @@ __webpack_require__(20);
 __webpack_require__(43);
 __webpack_require__(44);
 __webpack_require__(55);
+// require('./dist/Errors');
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -50333,12 +50338,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+// import Errors from '@dist/Errors'
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'FormEmployee',
     data: function data() {
         return {
             first_name: '',
-            last_name: ''
+            last_name: '',
+            errors: new Errors()
         };
     },
 

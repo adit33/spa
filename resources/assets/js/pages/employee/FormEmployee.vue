@@ -14,12 +14,14 @@
 </template>
 
 <script>
+// import Errors from '@dist/Errors'
 export default {
     name:'FormEmployee',
   data(){
       return {
           first_name:'',
-          last_name:''
+          last_name:'',
+          errors:new  Errors()
       }
   },
   methods:{
