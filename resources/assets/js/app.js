@@ -11,8 +11,7 @@ require('./bootstrap');
 require('./packages');
 require('./components');
 require('./routes');
-// require('./dist/Errors');
-import Errors from 'Dist/Errors';
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

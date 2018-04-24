@@ -5,7 +5,7 @@
                     <div class="card-header">Create Employee</div>
 
                     <div class="card-body">
-                        <form-employee @update="saveEmployee"></form-employee>
+                        <form-employee @update="saveEmployee" :errors="errors"></form-employee>
                         
                     </div>
                 </div>
@@ -16,17 +16,24 @@
 
 <script>
 import FormEmployee from './FormEmployee';
+import Errors from 'Dist/Errors';
+
 export default {
   components:{
       'form-employee':FormEmployee,
+  },
+  data(){
+      return {
+           errors:new  Errors()
+      }
   },
   methods:{
       saveEmployee(data){
           let url='api/employee';
           axios.post(url,data).then(response=>{
 
-          }).catch(erros=>{
-
+          }).catch(error=>{
+              this.errors.record(error.response.data.errors)
           })
       }
   }

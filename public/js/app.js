@@ -16658,7 +16658,7 @@ var normalizeComponent = __webpack_require__(2)
 /* script */
 var __vue_script__ = __webpack_require__(50)
 /* template */
-var __vue_template__ = __webpack_require__(54)
+var __vue_template__ = __webpack_require__(55)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -16701,16 +16701,13 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(16);
-module.exports = __webpack_require__(56);
+module.exports = __webpack_require__(57);
 
 
 /***/ }),
 /* 16 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-throw new Error("Cannot find module \"Dist/Errors\"");
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -16723,9 +16720,7 @@ window.Vue = __webpack_require__(17);
 __webpack_require__(20);
 __webpack_require__(43);
 __webpack_require__(44);
-__webpack_require__(55);
-// require('./dist/Errors');
-
+__webpack_require__(56);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -50239,6 +50234,7 @@ if (false) {
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FormEmployee__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FormEmployee___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__FormEmployee__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_Dist_Errors__ = __webpack_require__(53);
 //
 //
 //
@@ -50255,16 +50251,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     components: {
         'form-employee': __WEBPACK_IMPORTED_MODULE_0__FormEmployee___default.a
     },
+    data: function data() {
+        return {
+            errors: new __WEBPACK_IMPORTED_MODULE_1_Dist_Errors__["a" /* default */]()
+        };
+    },
+
     methods: {
         saveEmployee: function saveEmployee(data) {
+            var _this = this;
+
             var url = 'api/employee';
-            axios.post(url, data).then(function (response) {}).catch(function (erros) {});
+            axios.post(url, data).then(function (response) {}).catch(function (error) {
+                _this.errors.record(error.response.data.errors);
+            });
         }
     }
 });
@@ -50278,7 +50286,7 @@ var normalizeComponent = __webpack_require__(2)
 /* script */
 var __vue_script__ = __webpack_require__(52)
 /* template */
-var __vue_template__ = __webpack_require__(53)
+var __vue_template__ = __webpack_require__(54)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -50337,15 +50345,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
-// import Errors from '@dist/Errors'
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'FormEmployee',
+    props: ['errors'],
     data: function data() {
         return {
             first_name: '',
-            last_name: '',
-            errors: new Errors()
+            last_name: ''
+
         };
     },
 
@@ -50358,6 +50373,46 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 /* 53 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Errors = function () {
+    function Errors() {
+        _classCallCheck(this, Errors);
+
+        this.errors = {};
+    }
+
+    _createClass(Errors, [{
+        key: "get",
+        value: function get(field) {
+            if (this.errors[field]) {
+                return this.errors[field][0];
+            }
+        }
+    }, {
+        key: "clear",
+        value: function clear(field) {
+            delete this.errors[field];
+        }
+    }, {
+        key: "record",
+        value: function record(errors) {
+            this.errors = errors;
+        }
+    }]);
+
+    return Errors;
+}();
+
+/* harmony default export */ __webpack_exports__["a"] = (Errors);
+
+/***/ }),
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -50378,6 +50433,7 @@ var render = function() {
           }
         ],
         staticClass: "form-control",
+        class: { "is-invalid": _vm.errors.get("first_name") },
         domProps: { value: _vm.first_name },
         on: {
           input: function($event) {
@@ -50387,7 +50443,15 @@ var render = function() {
             _vm.first_name = $event.target.value
           }
         }
-      })
+      }),
+      _vm._v(" "),
+      _vm.errors.get("first_name")
+        ? _c("div", { staticClass: "invalid-feedback" }, [
+            _vm._v(
+              "\n        " + _vm._s(_vm.errors.get("first_name")) + "\n        "
+            )
+          ])
+        : _vm._e()
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "form-group col-md-6" }, [
@@ -50403,6 +50467,7 @@ var render = function() {
           }
         ],
         staticClass: "form-control",
+        class: { "is-invalid": _vm.errors.get("last_name") },
         domProps: { value: _vm.last_name },
         on: {
           input: function($event) {
@@ -50412,7 +50477,15 @@ var render = function() {
             _vm.last_name = $event.target.value
           }
         }
-      })
+      }),
+      _vm._v(" "),
+      _vm.errors.get("last_name")
+        ? _c("div", { staticClass: "invalid-feedback" }, [
+            _vm._v(
+              "\n        " + _vm._s(_vm.errors.get("last_name")) + "\n        "
+            )
+          ])
+        : _vm._e()
     ]),
     _vm._v(" "),
     _c(
@@ -50433,7 +50506,7 @@ if (false) {
 }
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -50448,7 +50521,12 @@ var render = function() {
         _c(
           "div",
           { staticClass: "card-body" },
-          [_c("form-employee", { on: { update: _vm.saveEmployee } })],
+          [
+            _c("form-employee", {
+              attrs: { errors: _vm.errors },
+              on: { update: _vm.saveEmployee }
+            })
+          ],
           1
         )
       ])
@@ -50466,7 +50544,7 @@ if (false) {
 }
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -50488,7 +50566,7 @@ var app = new Vue({
 }).$mount('#app');
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

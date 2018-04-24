@@ -17,6 +17,7 @@ class Errors {
     record(errors){
         this.errors = errors;
     }
+    
 
 }
 
