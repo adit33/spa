@@ -21,4 +21,9 @@ class EmployeeController extends Controller
     public function destroy(){
 
     }
+
+    public function getEmployees(){
+        $employees=Employee::all();
+        return $employees;
+    }
 }

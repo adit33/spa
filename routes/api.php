@@ -18,3 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::resource('employee','EmployeeController')->except(['create','edit','show']);
+
+Route::get('getemployees','EmployeeController@getEmployees');
