@@ -14,16 +14,25 @@ class EmployeeController extends Controller
         Employee::create($request->all());
     }
 
-    public function update(){
-        
+    public function update($id,EmployeeRequest $request){
+        $employee=Employee::find($id);
+        $employee->first_name=$request->input('first_name');
+        $employee->last_name=$request->input('last_name');
+        $employee->save();
     }
 
-    public function destroy(){
-
+    public function destroy($id){
+        $employee=Employee::find($id);
+        $employee->delete();
     }
 
     public function getEmployees(){
         $employees=Employee::all();
         return $employees;
+    }
+
+    public function getEmployee($id){
+        $employee = Employee::find($id);
+        return $employee;
     }
 }

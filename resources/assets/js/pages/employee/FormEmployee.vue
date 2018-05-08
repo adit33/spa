@@ -2,7 +2,7 @@
 <div class="row">
     <div class="form-group col-md-6">
         <label for="">First Name</label>
-        <input class="form-control" v-model="first_name" :class="{'is-invalid':errors.get('first_name')}" />
+        <input class="form-control" v-model="employee.first_name" :class="{'is-invalid':errors.get('first_name')}" />
         <div v-if="errors.get('first_name')" class="invalid-feedback">
         {{ errors.get('first_name') }}
         </div>
@@ -11,7 +11,7 @@
 
     <div class="form-group col-md-6">
         <label for="">Last Name</label>
-        <input class="form-control" v-model="last_name" :class="{'is-invalid':errors.get('last_name')}" />
+        <input class="form-control" v-model="employee.last_name" :class="{'is-invalid':errors.get('last_name')}" />
         <div v-if="errors.get('last_name')" class="invalid-feedback">
         {{ errors.get('last_name') }}
         </div>
@@ -23,17 +23,16 @@
 <script>
 export default {
     name:'FormEmployee',
-    props:['errors'],
+    props:['errors','employee'],
   data(){
       return {
-          first_name:'',
-          last_name:'',
+         
          
       }
   },
   methods:{
       add(){
-          this.$emit("update",this.$data);
+          this.$emit("save",this.$data);
       }
   }
 }
