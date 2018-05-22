@@ -68,7 +68,9 @@ export default {
                     let url="api/employee/"+id;
                     axios.delete(url).then(response=>{
                          this.$router.push('/employee');
+                         this.employees=this.employees.filter(employee => employee.id != id );
                     });
+                    
                 } else {
                     swal("Your imaginary file is safe!");
                 }
