@@ -10,14 +10,16 @@ use App\Http\Requests\EmployeeRequest;
 
 class EmployeeController extends Controller
 {
-    public function store(EmployeeRequest $request){
-        Employee::create($request->all());
+    public function store(Request $request){
+        // Employee::create($request->all());
+        return dd($request->all());
     }
 
     public function update($id,EmployeeRequest $request){
         $employee=Employee::find($id);
         $employee->first_name=$request->input('first_name');
         $employee->last_name=$request->input('last_name');
+        //$employee->image
         $employee->save();
     }
 

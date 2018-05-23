@@ -26,7 +26,8 @@ export default {
       return {
           employee:{
               first_name:'',
-              last_name:''
+              last_name:'',
+              image:''
           },
            errors:new  Errors()
       }
@@ -34,7 +35,8 @@ export default {
   methods:{
       saveEmployee(data){
           let url='api/employee';
-          axios.post(url,this.$data.employee).then(response=>{
+        //   console.log(this.$data.employee.image)
+          axios.post(url,{image:this.$data.employee.image}).then(response=>{
                this.$router.push('/employee');
           }).catch(error=>{
               this.errors.record(error.response.data.errors)
