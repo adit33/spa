@@ -29,8 +29,9 @@ export default {
                 this.image_src=src;
             };
             reader.readAsDataURL(file);
-
-            this.$emit('loaded',{immage_src,file});
+             let formData = new FormData();
+             formData.set('image',file);
+            this.$emit('loaded',file);
         }
     }    
 }

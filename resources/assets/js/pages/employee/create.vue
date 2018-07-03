@@ -34,9 +34,13 @@ export default {
   },
   methods:{
       saveEmployee(data){
-          let url='api/employee';
+         let url='api/employee';
+         let employee=new FormData();
+         employee.append('first_name',this.$data.employee.first_name)
+         employee.append('last_name',this.$data.employee.last_name)
+         employee.append('images',this.$data.employee.image)
         //   console.log(this.$data.employee.image)
-          axios.post(url,{image:this.$data.employee.image}).then(response=>{
+          axios.post(url,employee).then(response=>{
                this.$router.push('/employee');
           }).catch(error=>{
               this.errors.record(error.response.data.errors)

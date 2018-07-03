@@ -45,9 +45,9 @@ export default {
       },
       onLoad(value){
           let vm=this;
-          vm.employee.image=value.src;
+          vm.employee.image=value;
         //   this.employee.image=data.image;
-          console.log(vm.employee)
+          console.log(value)
       }
   }
 }

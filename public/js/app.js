@@ -50472,8 +50472,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             var url = 'api/employee';
+            var employee = new FormData();
+            employee.append('first_name', this.$data.employee.first_name);
+            employee.append('last_name', this.$data.employee.last_name);
+            employee.append('images', this.$data.employee.image);
             //   console.log(this.$data.employee.image)
-            axios.post(url, { image: this.$data.employee.image }).then(function (response) {
+            axios.post(url, employee).then(function (response) {
                 _this.$router.push('/employee');
             }).catch(function (error) {
                 _this.errors.record(error.response.data.errors);
@@ -50536,9 +50540,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         onLoad: function onLoad(value) {
             var vm = this;
-            vm.employee.image = value.src;
+            vm.employee.image = value;
             //   this.employee.image=data.image;
-            console.log(vm.employee);
+            console.log(value);
         }
     }
 });
@@ -50582,8 +50586,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.image_src = src;
             };
             reader.readAsDataURL(file);
-
-            this.$emit('loaded', { immage_src: immage_src, file: file });
+            var formData = new FormData();
+            formData.set('image', file);
+            this.$emit('loaded', file);
         }
     }
 });
