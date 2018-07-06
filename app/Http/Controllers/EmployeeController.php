@@ -10,9 +10,8 @@ use App\Http\Requests\EmployeeRequest;
 
 class EmployeeController extends Controller
 {
-    public function store(Request $request){
-        // Employee::create($request->all());
-        return dd($request->all());
+    public function store(EmployeeRequest $request){
+        Employee::create($request->all());
     }
 
     public function update($id,EmployeeRequest $request){
